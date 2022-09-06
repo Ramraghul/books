@@ -1,24 +1,26 @@
-import logo from './logo.svg';
+import "bootstrap/dist/css/bootstrap.min.css"
 import './App.css';
+import {BrowserRouter,Routes,Route,} from "react-router-dom";
+import Portal from "./Component/Portal/Portal";
+import Dashboard from "./Component/Portal/Dashboard";
+import Newbook from "./Component/Portal/Newbook";
+import Bookview from "./Component/Portal/Bookview";
+import EditBook from "./Component/Portal/Editbook";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Portal />}>
+              <Route index element={<Newbook />} />
+              <Route path="Dashboard" element={<Dashboard />}/>
+              <Route path="Dashboard/View/:id" element={<Bookview/>}/>
+              <Route path="Dashboard/Edit/:id" element={<EditBook/>}/>
+            </Route>
+          </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
